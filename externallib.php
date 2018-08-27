@@ -1728,7 +1728,7 @@ class local_intelliboard_external extends external_api {
                         SUM(CASE WHEN t.courseid > 0 THEN l.timespend ELSE null END) as timecourses ,
                         SUM(CASE WHEN t.page = 'module' THEN l.timespend ELSE null END) as timeactivities
                    	FROM {local_intelliboard_tracking} t, {local_intelliboard_logs} l
-                   	WHERE l.trackid = t.id
+                   	WHERE l.trackid = t.id $sql_join_filter
                     GROUP BY t.userid) as lit ON lit.userid = u.id
 				$sql_join
 			WHERE u.id > 0 $sql_filter
